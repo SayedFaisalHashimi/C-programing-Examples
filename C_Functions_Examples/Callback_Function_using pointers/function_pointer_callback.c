@@ -7,33 +7,40 @@
  *   The display function accepts a callback function and executes it.
  */
 
-void sum(int a, int b);
-void sub(int a, int b);
-void display(void (*callback)(int, int), int a, int b);
+int sum(int a, int b);
+int sub(int a, int b);
+int display(int (*callback)(int, int), int a, int b);
 
 int main() {
     int x = 10, y = 5;
 
     // Using sum as a callback
-    display(sum, x, y);
+    int summ=display(sum, x, y);
 
     // Using sub as a callback
-    display(sub, x, y);
+    int subm=display(sub, x, y);
+
+    // Print results
+    // -------------------------
+    printf("Sum is: %d\n", summ);
+    printf("Sub is: %d\n", subm);
 
     return 0;
 }
 
 // Display function executes the callback
-void display(void (*callback)(int, int), int a, int b) {
-    callback(a, b);  // Call the function passed as argument
+int display(int (*callback)(int, int), int a, int b) {
+
+    int t=callback(a, b);  // Call the function passed as argument
+    return t;
 }
 
 // Callback function: sum
-void sum(int a, int b) {
-    printf("Sum is: %d\n", a + b);
+int sum(int a, int b) {
+    return a+b;
 }
 
 // Callback function: subtraction
-void sub(int a, int b) {
-    printf("Sub is: %d\n", a - b);
+int sub(int a, int b) {
+    return a-b;
 }
