@@ -1,22 +1,24 @@
 #include <stdio.h>
 
 // Function declaration
-void sum(int i, int j);
+int sum(int i, int j);
 
 int main() {
-    int a, b;
+    int a, b, s=0;
 
     // Function pointer declaration and assignment
-    void (*operation)(int, int) = &sum;
+    int (*operation)(int, int) = &sum;
 
     // Call the function using the pointer
-    operation(a, b);
+    s=operation(a, b);
+
+    printf("Sum is : %d\n", s); 
 
     return 0;
 }
 
 // Function definition
-void sum(int i, int j) {
+int sum(int i, int j) {
     // Read values inside the function
     printf("Enter a: ");
     scanf("%d", &i);
@@ -25,5 +27,5 @@ void sum(int i, int j) {
     scanf("%d", &j);
 
     int s = i + j;
-    printf("Sum is: %d\n", s);
+    return s;
 }
